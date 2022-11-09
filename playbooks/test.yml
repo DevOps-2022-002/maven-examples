@@ -1,0 +1,5 @@
+--- # My First YAML playbook
+- hosts: webservers 
+  tasks:
+  - name: Install httpd on server
+    action: yum pkg=httpd state=installed

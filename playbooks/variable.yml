@@ -1,0 +1,13 @@
+---
+- name: sample variable definetion
+  hosts: webservers
+  become: yes
+
+  vars:
+    pkgname: httpd
+
+  tasks:
+    - name: install httpd into webservers
+      yum:
+        name: '{{pkgname}}'
+        state: latest

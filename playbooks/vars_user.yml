@@ -1,0 +1,11 @@
+---
+- name: sample user creation
+  hosts: webservers
+  become: yes
+
+  vars:
+    user: test
+
+  tasks:
+    - name: creating user {{user}}
+      action: yum name= '{{user}}' state=present

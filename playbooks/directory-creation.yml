@@ -1,0 +1,9 @@
+---
+- name: Samplet Playbook for directory creation
+  hosts: webservers
+  become: true
+  tasks:
+  - name: deleting a nexus directory.
+    file:
+      path: /tmp/nexus
+      state: absent 

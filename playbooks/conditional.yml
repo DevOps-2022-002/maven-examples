@@ -1,0 +1,13 @@
+---
+- name: sample conditional script to install httpd on linux machines
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: installing apache for debian
+      command: apt-get install apache2 -yes
+      when: ansible_os_family == "Debian"
+
+    - name: installing apache for redhat
+      command: yum install httpd -y
+      when: ansible_os_family == "RedHat"

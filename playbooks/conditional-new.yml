@@ -1,0 +1,30 @@
+---
+- name: sample conditional script to install httpd on linux machines
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: installing apache for redhat
+      yum:
+        name: httpd
+        state: installed
+      when: ansible_os_family == "RedHat"
+
+    - name: start the apache service
+      service:
+        name: httpd
+        state: started
+      when: ansible_os_family == "RedHat"
+
+    - name: installing apache for ubuntu
+      apt:
+        name: httpd
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: start the apache service
+      service:
+        name: apache2
+        state: started
+      when: ansible_os_family == "Debian"
+

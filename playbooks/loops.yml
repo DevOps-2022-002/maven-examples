@@ -1,0 +1,14 @@
+---
+- name: multiple software installations
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: install package
+      yum: name='{{item}}' state=latest
+      with_items:
+        - httpd
+        - git
+        - mysql
+        - java
+        - docker
