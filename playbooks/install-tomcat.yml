@@ -1,0 +1,31 @@
+---
+- name: install java and tomcat
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: install java on Redhat
+      yum:
+        name: java
+        state: installed
+
+    - name: download tomcat package
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz
+        dest: /opt/
+
+    - name: Extract tomcat.tar file into /opt/
+      unarchive:
+        src: /opt/apache-tomcat-8.5.83.tar.gz
+        dest: /opt
+        remote_src: yes
+
+    - name: providing executable permission to a file
+      file:
+        path: /opt//apache-tomcat-8.5.83/bin/startup.sh
+        mode: 0777
+
+    - name: start the tomcat service
+      shell: nohup ./startup.sh
+      args:
+        chdir: /opt//apache-tomcat-8.5.83/bin/
