@@ -1,0 +1,14 @@
+  {
+    "builders": [
+      {
+        "type": "amazon-ebs",
+	"access_key": "AKIA4OLNHDPVQ4SZB76P",
+	"secret_key": "k6i7R38Sirub2Lbz2mwVBmmlXKXlCOhtf/HdM6Td",
+	"region": "us-west-2",
+	"ami_name": "sample-image",
+	"source_ami": "ami-094125af156557ca2",
+	"instance_type": "t2.micro",
+	"ssh_username": "ec2-user"
+      }
+     ]
+   }
