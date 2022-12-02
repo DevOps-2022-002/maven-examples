@@ -1,0 +1,31 @@
+{
+    "variables": {
+      "version": "webserver"
+    },
+    "builders": [
+      {
+        "type": "amazon-ebs",
+	"access_key": "AKIA4",
+	"secret_key": "zSpolBVU9AVcm5YK",
+	"region": "us-west-2",
+	"ami_name": "{{user `version`}}",
+	"source_ami": "ami-017fecd1353bcc96e",
+	"instance_type": "t2.micro",
+	"ssh_username": "ubuntu"
+      }
+     ],
+     "provisioners": [
+       {
+         "type": "shell",
+         "inline": ["sleep 30", "sudo apt-get update -y", "sudo apt-get install nginx -y"]
+       }
+     ],
+     "post-processors": [
+	{
+          "type": "manifest",
+	  "output": "manifest.json"
+
+	}
+
+   ]
+  }
